@@ -1,0 +1,106 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ededed;
+}
+
+.header {
+  background-color: #fff;
+  -webkit-box-shadow: 2px 4px 2px rgba(144, 143, 143, 0.1);
+          box-shadow: 2px 4px 2px rgba(144, 143, 143, 0.1);
+  padding-bottom: 10px;
+}
+
+.header .header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 70px;
+}
+
+.header .header-container .logo {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+main {
+  height: 100vh;
+}
+
+main .container {
+  margin: 0px 70px;
+}
+
+main .container .search-filter-container {
+  margin: 50px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .container .search-filter-container .searchBox input {
+  border: none;
+  width: 450px;
+  padding: 15px 20px;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+          box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+}
+
+main .container .search-filter-container .filterBox select {
+  border: none;
+  width: 200px;
+  padding: 15px 15px;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+          box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+}
+
+main .container .countries-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  grid-gap: 80px;
+}
+
+main .container .countries-container .countryBox {
+  border-radius: 10px;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+          box-shadow: 0px 0px 4px 4px rgba(144, 143, 143, 0.1);
+}
+
+main .container .countries-container .countryBox .countryLogo {
+  width: 100%;
+  height: 200px;
+}
+
+main .container .countries-container .countryBox .country-details {
+  padding: 30px 20px;
+}
+
+main .container .countries-container .countryBox .country-details .country-name {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+main .container .countries-container .countryBox .country-details .sub-heading {
+  font-weight: 600;
+}
+/*# sourceMappingURL=style.css.map */
