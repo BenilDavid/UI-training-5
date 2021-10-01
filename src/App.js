@@ -22,6 +22,22 @@ function App() {
 		});
 	}, [region]);
 
+	useEffect(() => {
+		// console.log(name.name.common);
+		if (name === false) {
+			console.log('false in useeffect');
+			axios.get('https://restcountries.com/v3.1/all').then((res) => {
+				console.log(res.data);
+				setCountry(res.data);
+			});
+		} else {
+			axios.get(`https://restcountries.com/v3.1/name/${name}`).then((res) => {
+				console.log('running third use effect');
+				setCountry(res.data);
+			});
+		}
+	}, [name]);
+
 	// filter selected region countries
 	const selectedRegion = (e) => {
 		console.log(e.target.value);
@@ -30,6 +46,21 @@ function App() {
 
 	const searchedCountryName = (e) => {
 		console.log(e.target.value);
+		var searchedCountry = [];
+		country.map((data) => {
+			if (e.target.value === data.name.common) {
+				searchedCountry.push(data.name.common);
+				console.log('present in countries');
+			}
+		});
+		if (searchedCountry.length > 0) {
+			console.log(searchedCountry);
+			// setCountry(searchedCountry);
+			setName(searchedCountry);
+		} else {
+			console.log('nothing in array');
+			setName(false);
+		}
 	};
 
 	return (
