@@ -5,21 +5,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-	// let countryData;
-	// fetch('https://restcountries.com/v3.1/all').then((response) =>
-	// 	response.json().then((data) => {
-	// 		console.log(data);
-	// 		countryData = data;
-	// 	})
-	// );
 	const [country, setCountry] = useState([]);
-
+	const [region, setRegion] = useState([]);
+	const [name, setName] = useState([]);
 	useEffect(() => {
 		axios.get('https://restcountries.com/v3.1/all').then((res) => {
 			console.log(res.data);
 			setCountry(res.data);
 		});
 	}, []);
+
+	useEffect(() => {
+		axios.get(`https://restcountries.com/v3.1/region/${region}`).then((res) => {
+			console.log('running second use effect');
+			setCountry(res.data);
+		});
+	}, [region]);
+
+	// filter selected region countries
+	const selectedRegion = (e) => {
+		console.log(e.target.value);
+		setRegion(e.target.value);
+	};
+
+	const searchedCountryName = (e) => {
+		console.log(e.target.value);
+	};
 
 	return (
 		<>
@@ -37,12 +48,16 @@ function App() {
 								className="searchCountry"
 								type="text"
 								placeholder="Search for a country.."
+								onChange={searchedCountryName}
 							/>
 						</div>
 						<div className="filterBox">
-							<select name="" id="">
+							<select name="" id="" onChange={selectedRegion}>
+								<option selected="selected" disabled="disabled">
+									Filter by Region
+								</option>
 								<option value="Africa">Africa</option>
-								<option value="America">America</option>
+								<option value="Americas">America</option>
 								<option value="Asia">Asia</option>
 								<option value="Europe">Europe</option>
 								<option value="Oceania">Oceania</option>
