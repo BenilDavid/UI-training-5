@@ -31,7 +31,7 @@ function InfoPage(props) {
 			<div className="country-info">
 				<div className="container">
 					<div className="back">
-						<Link to="/">
+						<Link to="/UI-training-5/">
 							<button className="back-btn">Back</button>
 						</Link>
 					</div>
@@ -97,7 +97,7 @@ function InfoPage(props) {
 									return (
 										<Link
 											to={{
-												pathname: `/info${data.name.common}`,
+												pathname: `/UI-training-5/info${data.name.common}`,
 												state: { selectedCountry: data },
 											}}
 										>

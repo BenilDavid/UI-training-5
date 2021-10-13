@@ -97,7 +97,7 @@ function App(props) {
 						{country.map((data) => (
 							<Link
 								to={{
-									pathname: `/info${data.name.common}`,
+									pathname: `/UI-training-5/info${data.name.common}`,
 									state: { selectedCountry: data },
 								}}
 							>

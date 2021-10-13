@@ -17,9 +17,9 @@ ReactDOM.render(
 		<Router>
 			<Header />
 			<Switch>
-				<Route exact path="/" component={App} />
-				<Route exact path="/info" component={InfoPage} />
-				<Route path="/info:data" component={InfoPage} />
+				<Route exact path="/UI-training-5/" component={App} />
+				<Route exact path="/UI-training-5/info" component={InfoPage} />
+				<Route path="/UI-training-5/info:data" component={InfoPage} />
 			</Switch>
 		</Router>
 	</React.StrictMode>,
