@@ -3,8 +3,10 @@ import './App.css';
 import './css/style.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-function App() {
+function App(props) {
+	// showing all countries
 	const [country, setCountry] = useState([]);
 	const [region, setRegion] = useState([]);
 	const [name, setName] = useState([]);
@@ -23,7 +25,6 @@ function App() {
 	}, [region]);
 
 	useEffect(() => {
-		// console.log(name.name.common);
 		if (name === false) {
 			console.log('false in useeffect');
 			axios.get('https://restcountries.com/v3.1/all').then((res) => {
@@ -47,30 +48,26 @@ function App() {
 	const searchedCountryName = (e) => {
 		console.log(e.target.value);
 		var searchedCountry = [];
-		country.map((data) => {
-			if (e.target.value === data.name.common) {
+		country.find((data) => {
+			if (e.target.value.toLowerCase() === data.name.common.toLowerCase()) {
 				searchedCountry.push(data.name.common);
-				console.log('present in countries');
 			}
 		});
 		if (searchedCountry.length > 0) {
 			console.log(searchedCountry);
-			// setCountry(searchedCountry);
+
 			setName(searchedCountry);
 		} else {
-			console.log('nothing in array');
 			setName(false);
 		}
 	};
 
+	const clickedCountry = (e) => {
+		console.log('clicked me', e.target.dataset.value);
+	};
+
 	return (
 		<>
-			<header className="header">
-				<div className="header-container">
-					<div className="logo">Where in the world?</div>
-					<div className="mode">Dark Mode</div>
-				</div>
-			</header>
 			<main>
 				<div className="container">
 					<div className="search-filter-container">
@@ -98,23 +95,48 @@ function App() {
 
 					<div className="countries-container">
 						{country.map((data) => (
-							<div className="countryBox">
-								<img className="countryLogo" src={data.flags.svg} alt="" />
-								<div className="country-details">
-									<h3 className="country-name">{data.name.common}</h3>
-									<div className="population">
-										<span className="sub-heading">Population</span> :{' '}
-										{data.population}
-									</div>
-									<div className="region">
-										<span className="sub-heading">Region</span> : {data.region}
-									</div>
-									<div className="capital">
-										<span className="sub-heading">Capital</span> :{' '}
-										{data.capital}
+							<Link
+								to={{
+									pathname: `/info${data.name.common}`,
+									state: { selectedCountry: data },
+								}}
+							>
+								<div
+									className="countryBox"
+									data-value={data.area}
+									onClick={clickedCountry}
+								>
+									<img
+										className="countryLogo"
+										data-value={data.area}
+										src={data.flags.svg}
+										alt=""
+									/>
+									<div className="country-details" data-value={data.area}>
+										<h3 className="country-name" data-value={data.area}>
+											{data.name.common}
+										</h3>
+										<div className="population" data-value={data.area}>
+											<span className="sub-heading" data-value={data.area}>
+												Population
+											</span>{' '}
+											: {data.population}
+										</div>
+										<div className="region" data-value={data.area}>
+											<span className="sub-heading" data-value={data.area}>
+												Region
+											</span>{' '}
+											: {data.region}
+										</div>
+										<div className="capital" data-value={data.area}>
+											<span className="sub-heading" data-value={data.area}>
+												Capital
+											</span>{' '}
+											: {data.capital}
+										</div>
 									</div>
 								</div>
-							</div>
+							</Link>
 						))}
 					</div>
 				</div>
